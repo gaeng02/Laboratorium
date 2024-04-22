@@ -2,29 +2,39 @@ import tkinter as tk
 import webbrowser 
 
 def instagram () :
-    webbrowser.open("https://www.instagram.com/gaeng._.02/")
+    webbrowser.open("https://www.instagram.com/")
 
 def github () :
-    webbrowser.open("https://github.com/gaeng02")
+    webbrowser.open("https://github.com/")
 
 def baekjoon () :
-    webbrowser.open("https://www.acmicpc.net/user/gaeng_02")
+    webbrowser.open("https://www.acmicpc.net/user/")
     
-
+def login () :
+    a = id_entry.get()
+    b = pw_entry.get()
+    if a == 'admin' and b == '1234' : print("Login!")
+    else : print("Error")
+    
 root = tk.Tk()
 root.title("Login")
 root.geometry("400x600")
 root.resizable(0, 0)
 
-text_id = tk.Text(root, height = 2, width = 20, font=("Arial", 20))
-text_id.pack(pady=100, side = tk.TOP)
+id_label = tk.Label(root, text = "User id")
+id_label.pack() # pady=100, side = tk.TOP
+id_entry = tk.Entry(root)
+id_entry.pack()
 
-text_pw = tk.Text(root, height = 2, width = 20)
-text_pw.pack()
+pw_label = tk.Label(root, text = "Password")
+pw_label.pack()
+pw_entry = tk.Entry(root, show="*")
+pw_entry.pack()
 
-button_login = tk.Button(root, text = "Login")
-button_login.pack()
+login_button = tk.Button(root, text = "Login", command = login)
+login_button.pack()
 
+'''
 button_instagram = tk.Button(root, command = instagram)
 button_github = tk.Button(root, command = github)
 button_baekjoon = tk.Button(root, command = baekjoon)
@@ -32,5 +42,6 @@ button_baekjoon = tk.Button(root, command = baekjoon)
 button_instagram.pack()
 button_github.pack()
 button_baekjoon.pack()
+'''
 
 root.mainloop()
