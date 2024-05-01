@@ -1,6 +1,8 @@
 VERSION = 0.1 
 
-import .verification.py
+from .verification import *
 
 #from, login import *
-__all__ = []
+__all__ = ["login"]
+
+print("initialize")

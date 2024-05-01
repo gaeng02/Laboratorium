@@ -1,7 +1,11 @@
 import tkinter as tk
 import webbrowser 
 
-import login
+def login () :
+    a = id_entry.get()
+    b = pw_entry.get()
+    if a == 'admin' and b == '1234' : print("Login!")
+    else : print("Error")
     
 root = tk.Tk()
 root.title("Login")
@@ -20,15 +24,5 @@ pw_entry.pack()
 
 login_button = tk.Button(root, text = "Login", command = login)
 login_button.pack()
-
-'''
-button_instagram = tk.Button(root, command = instagram)
-button_github = tk.Button(root, command = github)
-button_baekjoon = tk.Button(root, command = baekjoon)
-
-button_instagram.pack()
-button_github.pack()
-button_baekjoon.pack()
-'''
 
 root.mainloop()
