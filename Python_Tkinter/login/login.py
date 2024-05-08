@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-import create_verification as check
+import valid 
 
 def login () :
     
