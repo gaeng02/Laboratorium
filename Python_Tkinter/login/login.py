@@ -50,13 +50,16 @@ def create () :
         try_password = pw_entry.get()
         check_password = pw_again_entry.get()
 
+        Failed = "Create Failed"
+
         if (try_password != check_password) :
-            tk.messagebox.showinfo("Create Failed", "Password and Again are not same.")
+            tk.messagebox.showinfo(Failed, "Password and Again are not same.")
             return ;
-        '''
-        if (!check_username(try_username)) :
-            tk.messagebox.showinfo("Create Failed", "Username is not valid.")
-        '''
+
+        username = valid.check_username(try_username)
+        password = valid.check_password(try_password)
+        if (username) : tk.messagebox.showinfo(Failed, username); return ;
+        if (password) : tk.messagebox.showinfo(Failed, password); return ;
         
         new.destroy()
         
