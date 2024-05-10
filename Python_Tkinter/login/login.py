@@ -8,7 +8,7 @@ def login () :
     def verification () : 
         try_username = id_entry.get()
         try_password = pw_entry.get()
-        if (try_username == "admin") and (try_password == "admin") : print("Login!")
+        if (try_username == "admin") and (try_password == "1234") : print("Login!")
         else : tk.messagebox.showinfo("Login", "Check your ID and Password!")
 
 
@@ -50,6 +50,7 @@ def create () :
         try_password = pw_entry.get()
         check_password = pw_again_entry.get()
 
+        Success = "Create Successfully"
         Failed = "Create Failed"
 
         if (try_password != check_password) :
@@ -60,8 +61,9 @@ def create () :
         password = valid.check_password(try_password)
         if (username) : tk.messagebox.showinfo(Failed, username); return ;
         if (password) : tk.messagebox.showinfo(Failed, password); return ;
-        
-        new.destroy()
+
+        tk.messagebox.showinfo(Success, "Create Successfully!"); 
+        return new.destroy()
         
     new = tk.Tk()
     new.title("Create new Account")
