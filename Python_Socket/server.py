@@ -14,7 +14,17 @@ while True :
     
     client_socket, client_address = server_socket.accept()
     
-    message = str(client_socket.recv(1024),'utf-8')
+    message = ''
+
+    while True :
+        chunk = client_socket.recv(1024)
+        
+        packet = chunk.decode('utf-8')
+        print(packet)
+        if (packet == "$") : break
+        
+        message += packet
+        
     print(message)
     
     index_html = """\

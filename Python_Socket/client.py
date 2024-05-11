@@ -8,8 +8,8 @@ client_socket.connect(address)
 
 while True :
     try :
-        message = input("send: ")
-        if (message == "Q") : break
+        message = input("send : ")
+        if (message == "$") : break
 
         client_socket.send(message.encode())
     except ConnectionAbortedError : print("Socket Connection Error")
