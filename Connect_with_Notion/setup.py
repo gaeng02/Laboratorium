@@ -1,6 +1,7 @@
 # write user_data
 
 import tkinter as tk
+from tkinter import messagebox
 import os
 
 def read_file () :
@@ -19,7 +20,25 @@ def read_file () :
     return True
 
 
-def setup () : 
+def setup () :
+
+    def Load () :
+        file = "_user_info_.txt"
+
+        if not os.path.exists(file) :
+            tk.messagebox.showinfo("Load Failed", "There is no file. Check again.")
+            return ;
+
+        with open(file, 'r') as f :
+            data = f.read()
+            # data = ["api_token_test", "database_id_test"]
+            
+            api_token_entry.delete(0, tk.END)
+            api_token_entry.insert(0, data[0])
+            database_id_entry.delete(0, tk.END)
+            database_id_entry.insert(0, data[1])
+
+            
     window = tk.Tk()
 
     window.title = ("User Info Setup")
@@ -44,7 +63,7 @@ def setup () :
     database_id_entry = tk.Entry(window, width = 30)
     database_id_entry.grid(row = 1, column = 1, padx = 10, pady = 10, columnspan = 2)
     
-    load_button = tk.Button(window, text = "Load") # command = load
+    load_button = tk.Button(window, text = "Load", command = Load) # command = load
     load_button.grid(row = 2, column = 1, padx = 10, pady = 10)
 
     save_button = tk.Button(window, text = "Save") # command = save
