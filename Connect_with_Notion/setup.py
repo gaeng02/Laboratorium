@@ -4,27 +4,11 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 
-def read_file () :
-    file = "_user_info.txt"
-    
-    if not os.path.exists(file) :
-        
-        with open(file, 'w') as f :
-            f.write("token_api \ndatabase_id")
-            
-        return False
-
-    with open(file, 'r') as f :
-        data = f.read()
-
-    return True
-
-
 def setup () :
-
+    file = "_user_info_.txt"
+    
     def Load () :
-        file = "_user_info_.txt"
-
+        
         if not os.path.exists(file) :
             tk.messagebox.showinfo("Load Failed", "There is no file. Check again.")
             return ;
@@ -38,10 +22,20 @@ def setup () :
             database_id_entry.delete(0, tk.END)
             database_id_entry.insert(0, data[1])
 
+
+    def Save () :
+        
+        api_token = api_token_entry.get()
+        database_id = database_id_entry.get()
+
+        messagebox.askokcancel("Save", "Are you sure you're going to save it?")
+        with open(file, 'w') as f :
+            f.write(api_token + '\n' + database_id)           
+
             
     window = tk.Tk()
 
-    window.title = ("User Info Setup")
+    window.title("User Info Setup")
     window.geometry("400x140")
     window.resizable(0, 0)
 
@@ -66,7 +60,7 @@ def setup () :
     load_button = tk.Button(window, text = "Load", command = Load) # command = load
     load_button.grid(row = 2, column = 1, padx = 10, pady = 10)
 
-    save_button = tk.Button(window, text = "Save") # command = save
+    save_button = tk.Button(window, text = "Save", command = Save) # command = save
     save_button.grid(row = 2, column = 2, padx = 10, pady = 10)
     
     window.mainloop()
