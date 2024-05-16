@@ -1,8 +1,8 @@
-VERSION = 0.1 
+VERSION = 1.0
 
-from .login import *
+from login import *
+from valid import *
 
-#from, login import *
-__all__ = ["login"]
+#from valid import *
 
-print("initialize")
+__all__ = ["login", "valid"]
