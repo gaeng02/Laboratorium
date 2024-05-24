@@ -1,7 +1,13 @@
 import tkinter as tk
 
-def calender (month = 12, year = 2024) :
-
+class calender (month = 12, year = 2024) :
+    
+    def left () :
+        calender(month - 1, year)
+        
+    def right () :
+        calender(month + 1, year)
+        
     m, y = int(month), int(year)
     
     root = tk.Tk()
@@ -17,9 +23,6 @@ def calender (month = 12, year = 2024) :
     
     root.mainloop()
 
-    def left () :
-        print("left")
-    def right () :
-        print("right")
+    
 
 calender()
