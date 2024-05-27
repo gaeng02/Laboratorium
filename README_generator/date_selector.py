@@ -1,49 +1,53 @@
 import tkinter as tk
 
-class calender () :
+class Calender () :
 
-    def __init__ (self, month = 12, year = 2024) :
-        self.m = month
-        self.y = year
-        self.display()
+    def __init__ (self, root) :
         
-    def check (self) :
-        if (self.m < 1) :
-            self.m += 12
-            self.y -= 1
-        elif (self.m > 12) :
-            self.m -= 12
-            self.y += 1
-
-    def display(self) :
-
-        def left () :
-            self.m -= 1
-            self.check()
+        self.root = root
+        self.root.title("Calender")
+        self.root.geometry("300x140")
+        self.root.resizable(0, 0)
         
-        def right () :
-            self.m += 1
-            self.check()
+        self.current = datetime.now()
+        self.selected_date = "None"
+
+        # Header
+        self.header_frame = ttk.Frame(root)
+        self.header_frame.pack()
+
+        self.left_button = ttk.Button(self.header_frame, text = "◀", command = left)
+        self.left_button.grid(row = 0, column = 0)
         
-        root = tk.Tk()
-        root.title("Calender")
-        root.geometry("300x140")
-        root.resizable(0, 0)
+        self.right_button = ttk.Button(self.header_frame, text = "▶", command = right)
+        self.right_button.grid(row = 0, column = 6)
 
-        left_button = tk.Button(root, text = "◀", command = left)
-        right_button = tk.Button(root, text = "▶", command = right)
+        # Calendar          
+        self.calendar_frame = ttk.Frame(root)
+        self.calendar_frame.pack()
 
-        left_button.grid(row = 0, column = 0)
-        right_button.grid(row = 0, column = 6)
+        self.create()
+        self.update()
 
-        year_label = tk.Label(root, text = self.y)
-        month_label = tk.Label(root, text = self.m)
+        # Selection 
+        self.selection_frame = ttk.Frame(root)
+        self.selection_frame.pack()
 
+        self.selection_label = ttk. Label(self.selection_frame, text = "", anchor = "center")
+        self.selection_label.pack()
+
+        self.year_label = ttk.Label(self.header_frame, text = self.y)
         year_label.grid(row = 0, column = 1, columnspan = 2)
+        self.month_label = ttk.Label(self.header_frame, text = self.m)
         month_label.grid(row = 0, column = 4, columnspan = 2)
 
-        print(self.m, self.y)
-        
-        root.mainloop()
 
-calender()
+    def create (self) :
+
+    def update (self) :
+        
+        
+if (__name__ == "__main__") :
+    root = tk.Tk()
+    app = Calendar(root)
+    root.mainloop()
