@@ -4,12 +4,15 @@ from tkinter import messagebox
 import calendar
 from datetime import datetime, timedelta
 
+
 class Calender () :
 
     def __init__ (self, root) :
         
         self.current = datetime.now()
         self.year = self.current.year
+        self.month_list = ["", "January", "February", "March", "April", "May", "June", "July",
+                           "August", "September", "October", "November", "December"]
         self.month = self.current.month
 
         self.selected_date = "None"
@@ -27,10 +30,10 @@ class Calender () :
         self.previous_button = ttk.Button(self.header_frame, text = "◀", width = 4, command = self.previous_month)
         self.previous_button.pack(padx = 20, side = "left")
 
-        self.year_label = ttk.Label(self.header_frame, text = self.year, width = 5, anchor = "center")
+        self.year_label = ttk.Label(self.header_frame, text = self.year, width = 4, anchor = "center")
         self.year_label.pack(side = "left")
         
-        self.month_label = ttk.Label(self.header_frame, text = self.month, width = 2, anchor = "center")
+        self.month_label = ttk.Label(self.header_frame, text = self.month_list[self.month], width = 10, anchor = "center")
         self.month_label.pack(side = "left")
         
         self.next_button = ttk.Button(self.header_frame, text = "▶", width = 4, command = self.next_month)
@@ -83,7 +86,7 @@ class Calender () :
                 button.config(text="", state = "disabled")
 
         self.year_label.config(text = self.year)
-        self.month_label.config(text = self.month)
+        self.month_label.config(text = self.month_list[self.month])
 
         first_day, num_days = calendar.monthrange(self.year, self.month)
         first_day = (first_day + 1) % 7 # Set start_day as "Sun" (default = "Mon")
@@ -130,10 +133,9 @@ class Calender () :
         return messagebox.askyesno("Confirm", f"Selected Date : \n{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}")
         
         
-        
+'''        
 if (__name__ == "__main__") :
     root = tk.Tk()
     app = Calender(root)
     root.mainloop()
-
-
+'''
