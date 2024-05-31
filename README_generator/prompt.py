@@ -6,10 +6,25 @@ from datetime import datetime
 import date_selector
 
 
-class README () :
+class Readme () :
 
     def __init__ (self, root) :
 
+
+    def Create (self) :
+        
+        with open("README.md", "w") as file : 
+            file.writelines(self.text)
+
+    def Reset (self) :
+
+        with open ("README.md", "w") as file :
+            file.write()
+
+class Prompt (README) :
+
+    def __init__ (self, root) :
+        
         self.text = []
         
         self.root = root
@@ -17,8 +32,4 @@ class README () :
         self.root.geometry("800x600")
         self.root.resizable(0, 0)
 
-
-    def Create (self) :
-        
-        with open("README.md", "w") as file : 
-            file.writelines(self.text)
+class Object (PROMPT) : 
