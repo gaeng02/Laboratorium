@@ -21,6 +21,7 @@ class Readme () :
         with open ("README.md", "w") as file :
             file.write()
 
+
 class Prompt (README) :
 
     def __init__ (self, root) :
@@ -32,4 +33,14 @@ class Prompt (README) :
         self.root.geometry("800x600")
         self.root.resizable(0, 0)
 
-class Object (PROMPT) : 
+class Object (PROMPT) :
+
+
+
+class Drag_Label (tk.Label) :
+    def __init__ (self, master) :
+
+    def on_click (self) :
+
+    def on_drag (self):
+    
