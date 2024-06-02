@@ -9,7 +9,7 @@ import date_selector
 class Readme () :
 
     def __init__ (self, root) :
-
+        self.n = root
 
     def Create (self) :
         
@@ -22,7 +22,7 @@ class Readme () :
             file.write()
 
 
-class Prompt (README) :
+class Prompt (Readme) :
 
     def __init__ (self, root) :
         
@@ -33,14 +33,30 @@ class Prompt (README) :
         self.root.geometry("800x600")
         self.root.resizable(0, 0)
 
-class Object (PROMPT) :
+#class Object (PROMPT) :
 
 
 
 class Drag_Label (tk.Label) :
-    def __init__ (self, master) :
+    def __init__ (self, master, **kwargs) :
+        super().__init__(master, **kwargs)
+        self.bind("<Button-1>", self.on_click)
+        self.bind("<B1-Motion>", self.on_drag)
 
-    def on_click (self) :
+    def on_click (self, event) :
+        self._drag_start_x = event.x
+        self._drag_start_y = event.y
 
-    def on_drag (self):
+    def on_drag (self, event) :
+        x = self.winfo_x() + event.x - self._drag_start_x
+        y = self.winfo_y() + event.y - self._drag_start_y
+        self.place(x = x, y = y)
+
+app = tk.Tk()
+app.geometry("800x600")
+
+label = Drag_Label(app, width = 10, bg = "black")
+label.place(x=100, y=100)
+
+app.mainloop()
     
