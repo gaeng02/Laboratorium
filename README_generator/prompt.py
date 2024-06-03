@@ -3,39 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from datetime import datetime
 
-import date_selector
-
-
-class Readme () :
-
-    def __init__ (self, root) :
-        self.n = root
-
-    def Create (self) :
-        
-        with open("README.md", "w") as file : 
-            file.writelines(self.text)
-
-    def Reset (self) :
-
-        with open ("README.md", "w") as file :
-            file.write()
-
-
-class Prompt (Readme) :
-
-    def __init__ (self, root) :
-        
-        self.text = []
-        
-        self.root = root
-        self.root.title("README prompt")
-        self.root.geometry("800x600")
-        self.root.resizable(0, 0)
-
-#class Object (PROMPT) :
-
-
+# import date_selector
 
 class Drag_Label (tk.Label) :
     def __init__ (self, master, **kwargs) :
@@ -52,11 +20,28 @@ class Drag_Label (tk.Label) :
         y = self.winfo_y() + event.y - self._drag_start_y
         self.place(x = x, y = y)
 
-app = tk.Tk()
-app.geometry("800x600")
 
-label = Drag_Label(app, width = 10, bg = "black")
-label.place(x=100, y=100)
+class Prompt () :
 
-app.mainloop()
+    def __init__ (self, root) :
+        
+        self.text = []
+        
+        self.root = root
+        self.root.title("README prompt")
+        self.root.geometry("800x600")
+        self.root.resizable(0, 0)
+
+        self.label = Drag_Label(self.root, width = 10, bg = "black")
+        self.label.place(x = 100, y = 100)
+
+        #self.root.mainloop()
+        
+
+#class Object (PROMPT) :
+
+if __name__ == "__main__" :
+    app = tk.Tk()
+    prompt = Prompt(app)
+    app.mainloop()
     
