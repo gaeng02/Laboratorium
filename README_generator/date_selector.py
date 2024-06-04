@@ -24,7 +24,7 @@ class Calender () :
         
 
         # Header
-        self.header_frame = ttk.Frame(root)
+        self.header_frame = ttk.Frame(self.root)
         self.header_frame.pack(pady=5)
 
         self.previous_button = ttk.Button(self.header_frame, text = "◀", width = 4, command = self.previous_month)
@@ -40,14 +40,14 @@ class Calender () :
         self.next_button.pack(padx = 20, side = "left")
 
         # Calendar          
-        self.calendar_frame = ttk.Frame(root)
+        self.calendar_frame = ttk.Frame(self.root)
         self.calendar_frame.pack(pady=5)
 
         self.create()
         self.update()
 
         # Selection 
-        self.selection_frame = ttk.Frame(root)
+        self.selection_frame = ttk.Frame(self.root)
         self.selection_frame.pack()
 
         self.selection_label = ttk.Label(self.selection_frame, text = "Not Selected", width = 25, anchor = "center")
@@ -133,9 +133,9 @@ class Calender () :
         return messagebox.askyesno("Confirm", f"Selected Date : \n{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}")
         
         
-'''        
+        
 if (__name__ == "__main__") :
     root = tk.Tk()
     app = Calender(root)
     root.mainloop()
-'''
+

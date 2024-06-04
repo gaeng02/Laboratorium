@@ -6,6 +6,7 @@ from datetime import datetime
 # import date_selector
 
 class Drag_Label (tk.Label) :
+    
     def __init__ (self, master, **kwargs) :
         super().__init__(master, **kwargs)
         self.bind("<Button-1>", self.on_click)
@@ -32,8 +33,15 @@ class Prompt () :
         self.root.geometry("800x600")
         self.root.resizable(0, 0)
 
-        self.label = Drag_Label(self.root, width = 10, bg = "black")
-        self.label.place(x = 100, y = 100)
+        self.block_frame = tk.Frame(self.root, width = 300, height = 600, bg = "light grey")
+        self.block_frame.grid(row = 0, column = 0)
+        
+        self.label = Drag_Label(self.block_frame, width = 10, bg = "black")
+        self.label.pack()
+
+        self.draw_frame = tk.Frame(self.root, width = 500, height = 600, background = "white")
+        self.draw_frame.grid(row = 0, column = 1)
+        
 
         #self.root.mainloop()
         
