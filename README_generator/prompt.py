@@ -80,10 +80,45 @@ class Prompt () :
         self.member_checkbox = tk.Checkbutton(self.root, text = "Member", variable = self.member_var)
         self.member_checkbox.grid(row = self.grid_row, column = 0)
 
-        #self.member_label = tk.La
+        self.member_frame = tk.Frame(self.root)
+        self.member_frame.grid(row = self.grid_row, column = 1)
+
+        self.name_label = tk.Label(self.member_frame, text = "User Name")
+        self.name_label.grid(row = 0, column = 1)
+        self.url_label = tk.Label(self.member_frame, text = "Github URL")
+        self.url_label.grid(row = 0, column = 2)
+        self.add_button = tk.Button(self.member_frame, text = "Add", command = self.Add_member)
+        self.add_button.grid(row = 0, column = 3)
+
+        self.member_num = 1
+        self.default_name_entry = tk.Entry(self.member_frame)
+        self.default_name_entry.grid(row = self.member_num, column = 1)
+        self.default_url_entry = tk.Entry(self.member_frame)
+        self.default_url_entry.grid(row = self.member_num, column = 2)
+
+
+        #
+        self.grid_row += 1
+
+
+    def Add_member (self) :
+        self.member_num += 1
+        
+        self.delete_button = tk.Button(self.member_frame, text = "Delete", command = self.Delete_member)
+        self.delete_button.grid(row = self.member_num, column = 0)
+        
+        self.new_name_entry = tk.Entry(self.member_frame)
+        self.new_name_entry.grid(row = self.member_num, column = 1)
+        
+        self.new_url_entry = tk.Entry(self.member_frame)
+        self.new_url_entry.grid(row = self.member_num, column = 2)
+
+
+    def Delete_member (self) :
+        self.member_num -= 1
         
 
-if __name__ == "__main__" :
+if (__name__ == "__main__") :
     app = tk.Tk()
     prompt = Prompt(app)
     app.mainloop()
