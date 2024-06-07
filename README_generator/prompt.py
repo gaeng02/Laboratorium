@@ -11,10 +11,23 @@ class Prompt () :
         
         self.text = []
         
-        self.root = root
-        self.root.title("README prompt")
-        self.root.geometry("800x600")
-        self.root.resizable(0, 0)
+        self.window = root
+        self.window.title("README prompt")
+        self.window.geometry("800x600")
+        self.window.resizable(0, 0)
+
+        self.main_canvas = tk.Canvas(self.window)
+        self.main_canvas.pack(side = "left", fill = "both", expand = True)
+
+        self.main_scrollbar = ttk.Scrollbar(self.window, orient = "vertical", command = self.main_canvas.yview)
+        self.main_scrollbar.pack(side = "right", fill = "y")
+
+        self.main_canvas.configure(yscrollcommand = self.main_scrollbar.set)
+        self.main_canvas.bind('<Configure>', lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
+
+        self.root = ttk.Frame(self.main_canvas)
+        self.main_canvas.create_window((0, 0), window=self.root, anchor="nw")
+
 
         # 
         self.grid_row = 0
@@ -78,7 +91,7 @@ class Prompt () :
 
         self.member_var = tk.IntVar()
         self.member_checkbox = tk.Checkbutton(self.root, text = "Member", variable = self.member_var)
-        self.member_checkbox.grid(row = self.grid_row, column = 0)
+        self.member_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
 
         self.member_frame = tk.Frame(self.root)
         self.member_frame.grid(row = self.grid_row, column = 1)
@@ -87,7 +100,7 @@ class Prompt () :
         self.name_label.grid(row = 0, column = 1)
         self.url_label = tk.Label(self.member_frame, text = "Github URL")
         self.url_label.grid(row = 0, column = 2)
-        self.add_button = tk.Button(self.member_frame, text = "Add", command = self.Add_member)
+        self.add_button = tk.Button(self.member_frame, text = "+", command = self.Add_member)
         self.add_button.grid(row = 0, column = 3)
 
         self.member_num = 1
@@ -104,7 +117,7 @@ class Prompt () :
     def Add_member (self) :
         self.member_num += 1
         
-        self.delete_button = tk.Button(self.member_frame, text = "Delete", command = self.Delete_member)
+        self.delete_button = tk.Button(self.member_frame, text = "-", command = self.Delete_member)
         self.delete_button.grid(row = self.member_num, column = 0)
         
         self.new_name_entry = tk.Entry(self.member_frame)
