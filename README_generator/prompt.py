@@ -117,19 +117,27 @@ class Prompt () :
     def Add_member (self) :
         self.member_num += 1
         
-        self.delete_button = tk.Button(self.member_frame, text = "-", command = self.Delete_member)
-        self.delete_button.grid(row = self.member_num, column = 0)
+        delete_button = tk.Button(self.member_frame, text = "-", command = lambda r = self.member_num : self.Delete_member(r))
+        delete_button.grid(row = self.member_num, column = 0)
         
-        self.new_name_entry = tk.Entry(self.member_frame)
-        self.new_name_entry.grid(row = self.member_num, column = 1)
+        new_name_entry = tk.Entry(self.member_frame)
+        new_name_entry.grid(row = self.member_num, column = 1)
         
-        self.new_url_entry = tk.Entry(self.member_frame)
-        self.new_url_entry.grid(row = self.member_num, column = 2)
+        new_url_entry = tk.Entry(self.member_frame)
+        new_url_entry.grid(row = self.member_num, column = 2)
 
 
-    def Delete_member (self) :
+    def Delete_member (self, row) :
         self.member_num -= 1
-        
+
+        for widget in self.member_frame.grid_slaves(row = row) :
+            widget.grid_forget()
+
+        for r in range (row + 1, self.member_num) :
+            for widget in self.member_frame.grid_slaves(row = r) :
+                widget.grid(row = r-1, column = widget.grid_info()["column"])
+                if isinstance(widget, tk.Button) and widget.cget("text") == "-":
+                    widget.config(command = lambda r = r-1 : self.Delete_member(r))
 
 if (__name__ == "__main__") :
     app = tk.Tk()
