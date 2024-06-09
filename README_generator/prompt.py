@@ -96,24 +96,43 @@ class Prompt () :
         self.member_frame = tk.Frame(self.root)
         self.member_frame.grid(row = self.grid_row, column = 1)
 
-        self.name_label = tk.Label(self.member_frame, text = "User Name")
-        self.name_label.grid(row = 0, column = 1)
-        self.url_label = tk.Label(self.member_frame, text = "Github URL")
-        self.url_label.grid(row = 0, column = 2)
-        self.add_button = tk.Button(self.member_frame, text = "+", command = self.Add_member)
-        self.add_button.grid(row = 0, column = 3)
+        self.member_name_label = tk.Label(self.member_frame, text = "User Name")
+        self.member_name_label.grid(row = 0, column = 1)
+        self.member_url_label = tk.Label(self.member_frame, text = "Github URL")
+        self.member_url_label.grid(row = 0, column = 2)
+        self.member_add_button = tk.Button(self.member_frame, text = "+", command = self.Add_member)
+        self.member_add_button.grid(row = 0, column = 3)
 
         self.member_num = 1
-        self.default_name_entry = tk.Entry(self.member_frame)
-        self.default_name_entry.grid(row = self.member_num, column = 1)
-        self.default_url_entry = tk.Entry(self.member_frame)
-        self.default_url_entry.grid(row = self.member_num, column = 2)
+        self.member_default_name_entry = tk.Entry(self.member_frame)
+        self.member_default_name_entry.grid(row = self.member_num, column = 1)
+        self.member_default_url_entry = tk.Entry(self.member_frame)
+        self.member_default_url_entry.grid(row = self.member_num, column = 2)
 
 
         #
         self.grid_row += 1
+        self.library_var = tk.IntVar()
+        self.library_checkbox = tk.Checkbutton(self.root, text = "Library", variable = self.library_var)
+        self.library_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
 
+        self.library_frame = tk.Frame(self.root)
+        self.library_frame.grid(row = self.grid_row, column = 1)
 
+        self.library_name_label = tk.Label(self.library_frame, text = "Library Name")
+        self.library_name_label.grid(row = 0, column = 1)
+        self.library_license_label = tk.Label(self.library_frame, text = "License")
+        self.library_license_label.grid(row = 0, column = 2)
+        self.library_add_button = tk.Button(self.library_frame, text = "+", command = self.Add_library)
+        self.library_add_button.grid(row = 0, column = 3)
+
+        self.library_num = 1
+        self.library_default_name_entry = tk.Entry(self.library_frame)
+        self.library_default_name_entry.grid(row = self.library_num, column = 1)
+        self.library_default_license_entry = tk.Entry(self.library_frame)
+        self.library_default_license_entry.grid(row = self.library_num, column = 2)
+
+ 
     def Add_member (self) :
         self.member_num += 1
         
@@ -138,6 +157,33 @@ class Prompt () :
                 widget.grid(row = r-1, column = widget.grid_info()["column"])
                 if isinstance(widget, tk.Button) and widget.cget("text") == "-":
                     widget.config(command = lambda r = r-1 : self.Delete_member(r))
+
+
+    def Add_library (self) :
+        self.library_num += 1
+        
+        delete_button = tk.Button(self.library_frame, text = "-", command = lambda r = self.library_num : self.Delete_library(r))
+        delete_button.grid(row = self.library_num, column = 0)
+        
+        new_name_entry = tk.Entry(self.library_frame)
+        new_name_entry.grid(row = self.library_num, column = 1)
+        
+        new_license_entry = tk.Entry(self.library_frame)
+        new_license_entry.grid(row = self.library_num, column = 2)
+
+
+    def Delete_library (self, row) :
+        self.library_num -= 1
+
+        for widget in self.library_frame.grid_slaves(row = row) :
+            widget.grid_forget()
+
+        for r in range (row + 1, self.member_num) :
+            for widget in self.library_frame.grid_slaves(row = r) :
+                widget.grid(row = r-1, column = widget.grid_info()["column"])
+                if isinstance(widget, tk.Button) and widget.cget("text") == "-":
+                    widget.config(command = lambda r = r-1 : self.Delete_library(r))
+                    
 
 if (__name__ == "__main__") :
     app = tk.Tk()
