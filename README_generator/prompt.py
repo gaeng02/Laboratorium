@@ -132,6 +132,28 @@ class Prompt () :
         self.library_default_license_entry = tk.Entry(self.library_frame)
         self.library_default_license_entry.grid(row = self.library_num, column = 2)
 
+        #
+        self.grid_row += 1
+        self.instruction_var = tk.IntVar()
+        self.instruction_checkbox = tk.Checkbutton(self.root, text = "Instruction", variable = self.instruction_var)
+        self.instruction_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
+
+        self.instruction_frame = tk.Frame(self.root)
+        self.instruction_frame.grid(row = self.grid_row, column = 1)
+
+        self.instruction_name_label = tk.Label(self.instruction_frame, text = "Instruction")
+        self.instruction_name_label.grid(row = 0, column = 1)
+        self.instruction_explanation_label = tk.Label(self.instruction_frame, text = "Explanation")
+        self.instruction_explanation_label.grid(row = 0, column = 2)
+        self.instruction_add_button = tk.Button(self.instruction_frame, text = "+", command = self.Add_instruction)
+        self.instruction_add_button.grid(row = 0, column = 3)
+
+        self.instruction_num = 1
+        self.instruction_default_name_entry = tk.Entry(self.instruction_frame)
+        self.instruction_default_name_entry.grid(row = self.instruction_num, column = 1)
+        self.instruction_default_explanation_entry = tk.Entry(self.instruction_frame)
+        self.instruction_default_explanation_entry.grid(row = self.instruction_num, column = 2)
+
  
     def Add_member (self) :
         self.member_num += 1
@@ -183,6 +205,32 @@ class Prompt () :
                 widget.grid(row = r-1, column = widget.grid_info()["column"])
                 if isinstance(widget, tk.Button) and widget.cget("text") == "-":
                     widget.config(command = lambda r = r-1 : self.Delete_library(r))
+                    
+
+    def Add_instruction (self) :
+        self.instruction_num += 1
+        
+        delete_button = tk.Button(self.instruction_frame, text = "-", command = lambda r = self.instruction_num : self.Delete_instruction(r))
+        delete_button.grid(row = self.instruction_num, column = 0)
+        
+        new_name_entry = tk.Entry(self.instruction_frame)
+        new_name_entry.grid(row = self.instruction_num, column = 1)
+        
+        new_explanation_entry = tk.Entry(self.instruction_frame)
+        new_explanation_entry.grid(row = self.instruction_num, column = 2)
+
+
+    def Delete_instruction (self, row) :
+        self.instruction_num -= 1
+
+        for widget in self.instruction_frame.grid_slaves(row = row) :
+            widget.grid_forget()
+
+        for r in range (row + 1, self.instruction_num) :
+            for widget in self.instruction_frame.grid_slaves(row = r) :
+                widget.grid(row = r-1, column = widget.grid_info()["column"])
+                if isinstance(widget, tk.Button) and widget.cget("text") == "-":
+                    widget.config(command = lambda r = r-1 : self.Delete_instruction(r))
                     
 
 if (__name__ == "__main__") :
