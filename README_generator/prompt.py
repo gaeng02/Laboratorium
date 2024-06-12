@@ -14,7 +14,7 @@ class Prompt () :
         self.window = root
         self.window.title("README prompt")
         self.window.geometry("800x600")
-        self.window.resizable(0, 0)
+        self.window.resizable(0, 1)
 
         self.main_canvas = tk.Canvas(self.window)
         self.main_canvas.pack(side = "left", fill = "both", expand = True)
@@ -26,6 +26,8 @@ class Prompt () :
         self.main_canvas.bind('<Configure>', lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
 
         self.root = ttk.Frame(self.main_canvas)
+        self.root.bind("<Configure>", lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
+        
         self.main_canvas.create_window((0, 0), window=self.root, anchor="nw")
 
 
