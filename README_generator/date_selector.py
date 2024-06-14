@@ -133,11 +133,16 @@ class Calender () :
 
     def ask (self) :
         return messagebox.askyesno("Confirm", f"Selected Date : \n{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}")
-        
-def update_date (root) :
+
+    def get_date (self) :
+        return f"{self.year} - {str(self.month).zfill(2)} - {str(self.day).zfill(2)}"
+
+
+def update_date () :
+    root = tk.Tk()
     app = Calender(root)
-    return root.mainloop()
-    
+    root.mainloop()
+    return app.get_date()
     
 '''        
 if (__name__ == "__main__") :

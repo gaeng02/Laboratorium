@@ -170,7 +170,9 @@ class Prompt () :
 
     def Get_date (self) :
         #calender = tk.Tk()
-        self.date = date_selector.update_date(tk.Tk())
+        self.date = date_selector.update_date()
+        #print(f"Return : {self.date}")
+        self.start_date_button.config(text = self.date)
 
         
     def Add_member (self) :
