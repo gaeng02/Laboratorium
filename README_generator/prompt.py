@@ -3,7 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from datetime import datetime
 
-# import date_selector
+import date_selector
 
 class Prompt () :
 
@@ -51,12 +51,15 @@ class Prompt () :
 
         #
         self.grid_row += 1
+        
+        self.start_date_var = tk.IntVar()
+        self.start_date_checkbox = tk.Checkbutton(self.root, text = "Start Date", variable = self.start_date_var)
+        self.start_date_checkbox.grid(row = self.grid_row, column = 0)
 
-        self.start_date_label = tk.Label(self.root, text = "Start Date")
-        self.start_date_label.grid(row = self.grid_row, column = 0)
+        self.date = datetime.now().strftime("%Y - %m - %d")
+        self.start_date_button = tk.Button(self.root, text = self.date, command = self.Get_date) 
+        self.start_date_button.grid(row = self.grid_row, column = 1) 
 
-        self.start_date_label = tk.Label(self.root, text = "")
-        self.start_date_label.grid(row = self.grid_row, column = 1)
 
         #
         self.grid_row += 1
@@ -164,7 +167,12 @@ class Prompt () :
         self.fixed_label = ttk.Label(self.fixed_frame, text = "Fixed")
         self.fixed_label.pack()
 
- 
+
+    def Get_date (self) :
+        #calender = tk.Tk()
+        self.date = date_selector.update_date(tk.Tk())
+
+        
     def Add_member (self) :
         self.member_num += 1
         

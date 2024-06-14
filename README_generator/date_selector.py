@@ -120,6 +120,8 @@ class Calender () :
         self.day = self.days_buttons[row][col].cget("text")
         self.selection_label.config(text = f"Selected Date : {self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}")
 
+        return [self.year, self.month, self.day]
+
 
     def confirm_date (self) :
         if (self.select_date) :
@@ -132,10 +134,14 @@ class Calender () :
     def ask (self) :
         return messagebox.askyesno("Confirm", f"Selected Date : \n{self.year}-{str(self.month).zfill(2)}-{str(self.day).zfill(2)}")
         
-        
-        
+def update_date (root) :
+    app = Calender(root)
+    return root.mainloop()
+    
+    
+'''        
 if (__name__ == "__main__") :
     root = tk.Tk()
     app = Calender(root)
     root.mainloop()
-
+'''
