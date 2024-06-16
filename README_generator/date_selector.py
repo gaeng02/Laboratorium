@@ -49,8 +49,8 @@ class Calender () :
         # Selection 
         self.selection_frame = ttk.Frame(self.root)
         self.selection_frame.pack()
-
-        self.selection_label = ttk.Label(self.selection_frame, text = "Not Selected", width = 25, anchor = "center")
+        
+        self.selection_label = ttk.Label(self.selection_frame, text = datetime.now().strftime("%Y - %m - %d"), width = 25, anchor = "center")
         self.selection_label.pack(side = "left")
 
         self.selection_button = ttk.Button(self.selection_frame, text = "Select", width = 8, command = self.confirm_date)
@@ -143,10 +143,8 @@ def update_date () :
     app = Calender(root)
     root.mainloop()
     return app.get_date()
-    
-'''        
+
+''' 
 if (__name__ == "__main__") :
-    root = tk.Tk()
-    app = Calender(root)
-    root.mainloop()
+    update_date()
 '''
