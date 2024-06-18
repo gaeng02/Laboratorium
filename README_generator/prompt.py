@@ -56,8 +56,8 @@ class Prompt () :
         self.start_date_checkbox = tk.Checkbutton(self.root, text = "Start Date", variable = self.start_date_var)
         self.start_date_checkbox.grid(row = self.grid_row, column = 0)
 
-        self.date = datetime.now().strftime("%Y - %m - %d")
-        self.start_date_button = tk.Button(self.root, text = self.date, command = self.Get_date) 
+        self.start_date = datetime.now().strftime("%Y - %m - %d")
+        self.start_date_button = tk.Button(self.root, text = self.start_date, command = self.Get_start_date) 
         self.start_date_button.grid(row = self.grid_row, column = 1) 
 
 
@@ -68,8 +68,9 @@ class Prompt () :
         self.last_update_checkbox = tk.Checkbutton(self.root, text = "Last Update", variable = self.last_update_var)
         self.last_update_checkbox.grid(row = self.grid_row, column = 0)
 
-        self.last_update_label = tk.Label(self.root, text = "")
-        self.last_update_label.grid(row = self.grid_row, column = 1)
+        self.last_update_date = datetime.now().strftime("%Y - %m - %d")
+        self.last_update_button = tk.Button(self.root, text = self.last_update_date, command = self.Get_last_update_date) 
+        self.last_update_button.grid(row = self.grid_row, column = 1)
 
         #
         self.grid_row += 1
@@ -169,9 +170,13 @@ class Prompt () :
 
     '''
     
-    def Get_date (self) :
-        self.date = date_selector.update_date()
-        self.start_date_button.config(text = self.date)
+    def Get_start_date (self) :
+        self.start_date = date_selector.update_date()
+        self.start_date_button.config(text = self.start_date)
+
+    def Get_last_update_date (self) :
+        self.last_update_date = date_selector.update_date()
+        self.last_update_button.config(text = self.last_update_date)
 
         
     def Add_member (self) :
