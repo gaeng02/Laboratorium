@@ -31,7 +31,7 @@ class Prompt () :
         self.main_canvas.create_window((0, 0), window=self.root, anchor="nw")
 
 
-        # 
+        # Project Name
         self.grid_row = 0
         
         self.project_name_label = tk.Label(self.root, text = "Project Name")
@@ -40,7 +40,7 @@ class Prompt () :
         self.project_name_entry = tk.Entry(self.root)
         self.project_name_entry.grid(row = self.grid_row, column = 1)
 
-        # 
+        # Project Purpose
         self.grid_row += 1
 
         self.project_purpose_label = tk.Label(self.root, text = "Project Purpose")
@@ -49,7 +49,7 @@ class Prompt () :
         self.project_purpose_text = tk.Text(self.root)
         self.project_purpose_text.grid(row = self.grid_row, column = 1)
 
-        #
+        # Start Date (YY-MM-DD)
         self.grid_row += 1
         
         self.start_date_var = tk.IntVar()
@@ -61,7 +61,7 @@ class Prompt () :
         self.start_date_button.grid(row = self.grid_row, column = 1) 
 
 
-        #
+        # Last Update Date (YY-MM-DD)
         self.grid_row += 1
 
         self.last_update_var = tk.IntVar()
@@ -72,7 +72,7 @@ class Prompt () :
         self.last_update_button = tk.Button(self.root, text = self.last_update_date, command = self.Get_last_update_date) 
         self.last_update_button.grid(row = self.grid_row, column = 1)
 
-        #
+        # Contents 
         self.grid_row += 1
 
         self.contents_var = tk.IntVar()
@@ -82,7 +82,7 @@ class Prompt () :
         self.contents_label = tk.Label(self.root, text = "Auto Creating")
         self.contents_label.grid(row = self.grid_row, column = 1)
 
-        # 
+        # Environment 
         self.grid_row += 1
 
         self.environment_var = tk.IntVar()
@@ -92,7 +92,7 @@ class Prompt () :
         self.environment_frame = tk.Frame(self.root)
         self.environment_frame.grid(row = self.grid_row, column = 1)
 
-        #
+        # Member
         self.grid_row += 1
 
         self.member_var = tk.IntVar()
@@ -116,7 +116,7 @@ class Prompt () :
         self.member_default_url_entry.grid(row = self.member_num, column = 2)
 
 
-        #
+        # Library
         self.grid_row += 1
         self.library_var = tk.IntVar()
         self.library_checkbox = tk.Checkbutton(self.root, text = "Library", variable = self.library_var)
@@ -138,7 +138,7 @@ class Prompt () :
         self.library_default_license_entry = tk.Entry(self.library_frame)
         self.library_default_license_entry.grid(row = self.library_num, column = 2)
 
-        #
+        # Function 
         self.grid_row += 1
         self.instruction_var = tk.IntVar()
         self.instruction_checkbox = tk.Checkbutton(self.root, text = "Instruction", variable = self.instruction_var)
