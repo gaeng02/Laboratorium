@@ -35,7 +35,7 @@ class Prompt () :
         self.grid_row = 0
         
         self.project_name_label = tk.Label(self.root, text = "Project Name")
-        self.project_name_label.grid(row = self.grid_row, column = 0)
+        self.project_name_label.grid(row = self.grid_row, column = 0, sticky = "w")
 
         self.project_name_entry = tk.Entry(self.root)
         self.project_name_entry.grid(row = self.grid_row, column = 1)
@@ -44,7 +44,7 @@ class Prompt () :
         self.grid_row += 1
 
         self.project_purpose_label = tk.Label(self.root, text = "Project Purpose")
-        self.project_purpose_label.grid(row = self.grid_row, column = 0)
+        self.project_purpose_label.grid(row = self.grid_row, column = 0, sticky = "w")
 
         self.project_purpose_text = tk.Text(self.root)
         self.project_purpose_text.grid(row = self.grid_row, column = 1)
@@ -54,7 +54,7 @@ class Prompt () :
         
         self.start_date_var = tk.IntVar()
         self.start_date_checkbox = tk.Checkbutton(self.root, text = "Start Date", variable = self.start_date_var)
-        self.start_date_checkbox.grid(row = self.grid_row, column = 0)
+        self.start_date_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
 
         self.start_date = datetime.now().strftime("%Y - %m - %d")
         self.start_date_button = tk.Button(self.root, text = self.start_date, command = self.Get_start_date) 
@@ -66,7 +66,7 @@ class Prompt () :
 
         self.last_update_var = tk.IntVar()
         self.last_update_checkbox = tk.Checkbutton(self.root, text = "Last Update", variable = self.last_update_var)
-        self.last_update_checkbox.grid(row = self.grid_row, column = 0)
+        self.last_update_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
 
         self.last_update_date = datetime.now().strftime("%Y - %m - %d")
         self.last_update_button = tk.Button(self.root, text = self.last_update_date, command = self.Get_last_update_date) 
@@ -77,7 +77,7 @@ class Prompt () :
 
         self.contents_var = tk.IntVar()
         self.contents_checkbox = tk.Checkbutton(self.root, text = "Contents", variable = self.contents_var)
-        self.contents_checkbox.grid(row = self.grid_row, column = 0)
+        self.contents_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
 
         self.contents_label = tk.Label(self.root, text = "Auto Creating")
         self.contents_label.grid(row = self.grid_row, column = 1)
@@ -97,7 +97,7 @@ class Prompt () :
 
         self.member_var = tk.IntVar()
         self.member_checkbox = tk.Checkbutton(self.root, text = "Member", variable = self.member_var)
-        self.member_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
+        self.member_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
 
         self.member_frame = tk.Frame(self.root)
         self.member_frame.grid(row = self.grid_row, column = 1)
@@ -120,7 +120,7 @@ class Prompt () :
         self.grid_row += 1
         self.library_var = tk.IntVar()
         self.library_checkbox = tk.Checkbutton(self.root, text = "Library", variable = self.library_var)
-        self.library_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
+        self.library_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
 
         self.library_frame = tk.Frame(self.root)
         self.library_frame.grid(row = self.grid_row, column = 1)
@@ -142,7 +142,7 @@ class Prompt () :
         self.grid_row += 1
         self.instruction_var = tk.IntVar()
         self.instruction_checkbox = tk.Checkbutton(self.root, text = "Instruction", variable = self.instruction_var)
-        self.instruction_checkbox.grid(row = self.grid_row, column = 0, sticky = "n")
+        self.instruction_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
 
         self.instruction_frame = tk.Frame(self.root)
         self.instruction_frame.grid(row = self.grid_row, column = 1)
