@@ -161,18 +161,18 @@ class Prompt () :
         self.instruction_default_explanation_entry = tk.Entry(self.instruction_frame)
         self.instruction_default_explanation_entry.grid(row = self.instruction_num, column = 2)
 
-
-        self.fixed_frame = ttk.Frame(self.main_canvas)
+'''
+        self.fixed_frame = ttk.Frame(self.window)
         self.fixed_frame.pack()
 
         self.fixed_label = ttk.Label(self.fixed_frame, text = "Fixed")
         self.fixed_label.pack()
+'''
 
-
-    
     def Get_start_date (self) :
         self.start_date = date_selector.update_date()
         self.start_date_button.config(text = self.start_date)
+
 
     def Get_last_update_date (self) :
         self.last_update_date = date_selector.update_date()
