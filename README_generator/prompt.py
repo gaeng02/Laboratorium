@@ -16,20 +16,23 @@ class Prompt () :
         self.window.geometry("800x600")
         self.window.resizable(0, 1)
 
-        self.main_canvas = tk.Canvas(self.window)
-        self.main_canvas.pack(side = "left", fill = "both", expand = True)
+        self.top_frame = ttk.Frame(self.window)
+        self.top_frame.pack(side="top", fill="both", expand=True)
 
-        self.main_scrollbar = ttk.Scrollbar(self.window, orient = "vertical", command = self.main_canvas.yview)
-        self.main_scrollbar.pack(side = "right", fill = "y")
+        self.bottom_frame = ttk.Frame(self.window)
+        self.bottom_frame.pack(side="bottom", fill="x")
 
-        self.main_canvas.configure(yscrollcommand = self.main_scrollbar.set)
-        self.main_canvas.bind('<Configure>', lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
+        self.main_canvas = tk.Canvas(self.top_frame)
+        self.main_scrollbar = ttk.Scrollbar(self.top_frame, orient = "vertical", command = self.main_canvas.yview)
 
         self.root = ttk.Frame(self.main_canvas)
         self.root.bind("<Configure>", lambda e: self.main_canvas.configure(scrollregion=self.main_canvas.bbox("all")))
-        self.root.pack()
         
         self.main_canvas.create_window((0, 0), window=self.root, anchor="nw")
+        self.main_canvas.configure(yscrollcommand = self.main_scrollbar.set)
+        
+        self.main_canvas.pack(side = "left", fill = "both", expand = True)
+        self.main_scrollbar.pack(side = "right", fill = "y")
 
 
         # Project Name
@@ -161,13 +164,10 @@ class Prompt () :
         self.instruction_default_explanation_entry = tk.Entry(self.instruction_frame)
         self.instruction_default_explanation_entry.grid(row = self.instruction_num, column = 2)
 
-'''
-        self.fixed_frame = ttk.Frame(self.window)
-        self.fixed_frame.pack()
-
-        self.fixed_label = ttk.Label(self.fixed_frame, text = "Fixed")
-        self.fixed_label.pack()
-'''
+        # Bottom Frame
+        self.bottom_label = tk.Label(self.bottom_frame, text = "Test")
+        self.bottom_label.pack()
+    
 
     def Get_start_date (self) :
         self.start_date = date_selector.update_date()
