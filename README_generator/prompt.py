@@ -166,8 +166,10 @@ class Prompt () :
 
         # Bottom Frame
         self.bottom_label = tk.Label(self.bottom_frame, text = "Test")
-        self.bottom_label.pack()
-    
+        self.bottom_label.grid(row = 0, column = 0)
+
+        self.create_button = tk.Button(self.bottom_frame, text = "Create", command = self.Create)
+        self.create_button.grid(row = 0, column = 1)
 
     def Get_start_date (self) :
         self.start_date = date_selector.update_date()
@@ -255,6 +257,9 @@ class Prompt () :
                 widget.grid(row = r-1, column = widget.grid_info()["column"])
                 if isinstance(widget, tk.Button) and widget.cget("text") == "-":
                     widget.config(command = lambda r = r-1 : self.Delete_instruction(r))
+
+    def Create (self) :
+        print("Create")
                     
 
 if (__name__ == "__main__") :
