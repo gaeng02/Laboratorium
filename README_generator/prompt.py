@@ -259,8 +259,14 @@ class Prompt () :
                     widget.config(command = lambda r = r-1 : self.Delete_instruction(r))
 
     def Create (self) :
-        print("Create")
-                    
+        if self.start_date_var.get() :
+            print("start_date")
+        self.last_update_var.get()
+        self.environment_var.get()
+        self.member_var.get()
+        self.library_var.get()
+        self.instruction_var.get()
+
 
 if (__name__ == "__main__") :
     app = tk.Tk()
