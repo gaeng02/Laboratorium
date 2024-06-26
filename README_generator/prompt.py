@@ -9,8 +9,6 @@ class Prompt () :
 
     def __init__ (self, root) :
         
-        self.text = []
-        
         self.window = root
         self.window.title("README prompt")
         self.window.geometry("800x600")
@@ -259,6 +257,10 @@ class Prompt () :
                     widget.config(command = lambda r = r-1 : self.Delete_instruction(r))
 
     def Create (self) :
+        text = []
+        text.append(self.project_name_entry.get())
+        text.append(self.project_purpose_text.get("1.0", "end"))
+        print(text)
         if self.start_date_var.get() :
             print("start_date")
         self.last_update_var.get()
