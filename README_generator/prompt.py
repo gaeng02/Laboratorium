@@ -260,14 +260,17 @@ class Prompt () :
         text = []
         text.append(self.project_name_entry.get())
         text.append(self.project_purpose_text.get("1.0", "end"))
-        print(text)
+        
         if self.start_date_var.get() :
-            print("start_date")
+            text.append(start_date_button.get())
+        else : text.append(None)
+        
         self.last_update_var.get()
         self.environment_var.get()
         self.member_var.get()
         self.library_var.get()
         self.instruction_var.get()
+        print(text)
 
 
 if (__name__ == "__main__") :
