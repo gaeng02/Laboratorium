@@ -262,7 +262,7 @@ class Prompt () :
         text.append(self.project_purpose_text.get("1.0", "end"))
         
         if self.start_date_var.get() :
-            text.append(start_date_button.get())
+            text.append(self.start_date_button.cget("text"))
         else : text.append(None)
         
         self.last_update_var.get()
