@@ -31,7 +31,11 @@ class Prompt () :
         
         self.main_canvas.pack(side = "left", fill = "both", expand = True)
         self.main_scrollbar.pack(side = "right", fill = "y")
-
+        
+        self.main_canvas.bind_all("<MouseWheel>", self._on_mouse_wheel) # for Windows / Linux
+        self.main_canvas.bind_all("<Button-4>", self._on_mouse_wheel) # for macOS 
+        self.main_canvas.bind_all("<Button-5>", self._on_mouse_wheel)
+        
 
         # Project Name
         self.grid_row = 0
@@ -169,10 +173,14 @@ class Prompt () :
         self.create_button = tk.Button(self.bottom_frame, text = "Create", command = self.Create)
         self.create_button.grid(row = 0, column = 1)
 
+    def _on_mouse_wheel (self, event) :
+        if (event.num == 4) : self.main_canvas.yview_scroll(-1, "units")
+        elif (event.num) == 5 : self.main_canvas.yview_scroll(1, "units")
+        else : self.main_canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+            
     def Get_start_date (self) :
         self.start_date = date_selector.update_date()
         self.start_date_button.config(text = self.start_date)
-
 
     def Get_last_update_date (self) :
         self.last_update_date = date_selector.update_date()
