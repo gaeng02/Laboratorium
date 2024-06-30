@@ -8,10 +8,10 @@ import date_selector
 class Prompt () :
 
     def __init__ (self, root) :
-        
+
         self.window = root
         self.window.title("README prompt")
-        self.window.geometry("800x600")
+        self.window.geometry("600x600")
         self.window.resizable(0, 1)
 
         self.top_frame = ttk.Frame(self.window)
@@ -41,30 +41,32 @@ class Prompt () :
         self.grid_row = 0
         
         self.project_name_label = tk.Label(self.root, text = "Project Name")
-        self.project_name_label.grid(row = self.grid_row, column = 0, sticky = "w")
+        self.project_name_label.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
-        self.project_name_entry = tk.Entry(self.root)
-        self.project_name_entry.grid(row = self.grid_row, column = 1)
+        self.project_name_entry = tk.Entry(self.root, width = 50)
+        self.project_name_entry.grid(row = self.grid_row, column = 1, sticky = "w", ipady = 5, pady = 5)
+
 
         # Project Purpose
         self.grid_row += 1
 
         self.project_purpose_label = tk.Label(self.root, text = "Project Purpose")
-        self.project_purpose_label.grid(row = self.grid_row, column = 0, sticky = "w")
+        self.project_purpose_label.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
-        self.project_purpose_text = tk.Text(self.root)
-        self.project_purpose_text.grid(row = self.grid_row, column = 1)
+        self.project_purpose_text = tk.Text(self.root, width = 50, height = 10)
+        self.project_purpose_text.grid(row = self.grid_row, column = 1, sticky = "w", ipady = 5, pady = 5)
+
 
         # Start Date (YY-MM-DD)
         self.grid_row += 1
         
         self.start_date_var = tk.IntVar()
         self.start_date_checkbox = tk.Checkbutton(self.root, text = "Start Date", variable = self.start_date_var)
-        self.start_date_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
+        self.start_date_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.start_date = datetime.now().strftime("%Y - %m - %d")
-        self.start_date_button = tk.Button(self.root, text = self.start_date, command = self.Get_start_date) 
-        self.start_date_button.grid(row = self.grid_row, column = 1) 
+        self.start_date_button = tk.Button(self.root, text = self.start_date, command = self.Get_start_date, width = 12, height = 1) 
+        self.start_date_button.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5) 
 
 
         # Last Update Date (YY-MM-DD)
@@ -72,106 +74,108 @@ class Prompt () :
 
         self.last_update_var = tk.IntVar()
         self.last_update_checkbox = tk.Checkbutton(self.root, text = "Last Update", variable = self.last_update_var)
-        self.last_update_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
+        self.last_update_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.last_update_date = datetime.now().strftime("%Y - %m - %d")
-        self.last_update_button = tk.Button(self.root, text = self.last_update_date, command = self.Get_last_update_date) 
-        self.last_update_button.grid(row = self.grid_row, column = 1)
+        self.last_update_button = tk.Button(self.root, text = self.last_update_date, command = self.Get_last_update_date, width = 12, height = 1) 
+        self.last_update_button.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5)
+
 
         # Contents 
         self.grid_row += 1
 
         self.contents_var = tk.IntVar()
         self.contents_checkbox = tk.Checkbutton(self.root, text = "Contents", variable = self.contents_var)
-        self.contents_checkbox.grid(row = self.grid_row, column = 0, sticky = "w")
+        self.contents_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.contents_label = tk.Label(self.root, text = "Auto Creating")
         self.contents_label.grid(row = self.grid_row, column = 1)
+
 
         # Environment 
         self.grid_row += 1
 
         self.environment_var = tk.IntVar()
         self.environment_checkbox = tk.Checkbutton(self.root, text = "Develop Environment", variable = self.environment_var)
-        self.environment_checkbox.grid(row = self.grid_row, column = 0)
+        self.environment_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.environment_frame = tk.Frame(self.root)
-        self.environment_frame.grid(row = self.grid_row, column = 1)
+        self.environment_frame.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5)
+
 
         # Member
         self.grid_row += 1
 
         self.member_var = tk.IntVar()
         self.member_checkbox = tk.Checkbutton(self.root, text = "Member", variable = self.member_var)
-        self.member_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
+        self.member_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.member_frame = tk.Frame(self.root)
-        self.member_frame.grid(row = self.grid_row, column = 1)
+        self.member_frame.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5)
 
         self.member_name_label = tk.Label(self.member_frame, text = "User Name")
-        self.member_name_label.grid(row = 0, column = 1)
+        self.member_name_label.grid(row = 0, column = 0, padx = 5, pady = 1)
         self.member_url_label = tk.Label(self.member_frame, text = "Github URL")
-        self.member_url_label.grid(row = 0, column = 2)
-        self.member_add_button = tk.Button(self.member_frame, text = "+", command = self.Add_member)
-        self.member_add_button.grid(row = 0, column = 3)
+        self.member_url_label.grid(row = 0, column = 1, padx = 5, pady = 1)
+        self.member_add_button = tk.Button(self.member_frame, text = "+", command = self.Add_member, width = 2, height = 1)
+        self.member_add_button.grid(row = 0, column = 2, padx = 5, pady = 1)
 
         self.member_num = 1
         self.member_default_name_entry = tk.Entry(self.member_frame)
-        self.member_default_name_entry.grid(row = self.member_num, column = 1)
+        self.member_default_name_entry.grid(row = self.member_num, column = 0, padx = 5, pady = 1)
         self.member_default_url_entry = tk.Entry(self.member_frame)
-        self.member_default_url_entry.grid(row = self.member_num, column = 2)
+        self.member_default_url_entry.grid(row = self.member_num, column = 1, padx = 5, pady = 1)
 
 
         # Library
         self.grid_row += 1
         self.library_var = tk.IntVar()
         self.library_checkbox = tk.Checkbutton(self.root, text = "Library", variable = self.library_var)
-        self.library_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
+        self.library_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.library_frame = tk.Frame(self.root)
-        self.library_frame.grid(row = self.grid_row, column = 1)
+        self.library_frame.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5)
 
         self.library_name_label = tk.Label(self.library_frame, text = "Library Name")
-        self.library_name_label.grid(row = 0, column = 1)
+        self.library_name_label.grid(row = 0, column = 0, padx = 5, pady = 1)
         self.library_license_label = tk.Label(self.library_frame, text = "License")
-        self.library_license_label.grid(row = 0, column = 2)
-        self.library_add_button = tk.Button(self.library_frame, text = "+", command = self.Add_library)
-        self.library_add_button.grid(row = 0, column = 3)
+        self.library_license_label.grid(row = 0, column = 1, padx = 5, pady = 1)
+        self.library_add_button = tk.Button(self.library_frame, text = "+", command = self.Add_library, width = 2, height = 1)
+        self.library_add_button.grid(row = 0, column = 2, padx = 5, pady = 1)
 
         self.library_num = 1
         self.library_default_name_entry = tk.Entry(self.library_frame)
-        self.library_default_name_entry.grid(row = self.library_num, column = 1)
+        self.library_default_name_entry.grid(row = self.library_num, column = 0, padx = 5, pady = 1)
         self.library_default_license_entry = tk.Entry(self.library_frame)
-        self.library_default_license_entry.grid(row = self.library_num, column = 2)
+        self.library_default_license_entry.grid(row = self.library_num, column = 1, padx = 5, pady = 1)
+
 
         # Function 
         self.grid_row += 1
         self.instruction_var = tk.IntVar()
         self.instruction_checkbox = tk.Checkbutton(self.root, text = "Instruction", variable = self.instruction_var)
-        self.instruction_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw")
+        self.instruction_checkbox.grid(row = self.grid_row, column = 0, sticky = "nw", padx = 10, pady = 5)
 
         self.instruction_frame = tk.Frame(self.root)
-        self.instruction_frame.grid(row = self.grid_row, column = 1)
+        self.instruction_frame.grid(row = self.grid_row, column = 1, sticky = "n", pady = 5)
 
         self.instruction_name_label = tk.Label(self.instruction_frame, text = "Instruction")
-        self.instruction_name_label.grid(row = 0, column = 1)
+        self.instruction_name_label.grid(row = 0, column = 0, padx = 5, pady = 1)
         self.instruction_explanation_label = tk.Label(self.instruction_frame, text = "Explanation")
-        self.instruction_explanation_label.grid(row = 0, column = 2)
-        self.instruction_add_button = tk.Button(self.instruction_frame, text = "+", command = self.Add_instruction)
-        self.instruction_add_button.grid(row = 0, column = 3)
+        self.instruction_explanation_label.grid(row = 0, column = 1, padx = 5, pady = 1)
+        self.instruction_add_button = tk.Button(self.instruction_frame, text = "+", command = self.Add_instruction, width = 2, height = 1)
+        self.instruction_add_button.grid(row = 0, column = 2, padx = 5, pady = 1)
 
         self.instruction_num = 1
         self.instruction_default_name_entry = tk.Entry(self.instruction_frame)
-        self.instruction_default_name_entry.grid(row = self.instruction_num, column = 1)
+        self.instruction_default_name_entry.grid(row = self.instruction_num, column = 0, padx = 5, pady = 1)
         self.instruction_default_explanation_entry = tk.Entry(self.instruction_frame)
-        self.instruction_default_explanation_entry.grid(row = self.instruction_num, column = 2)
+        self.instruction_default_explanation_entry.grid(row = self.instruction_num, column = 1, padx = 5, pady = 1)
+
 
         # Bottom Frame
-        self.bottom_label = tk.Label(self.bottom_frame, text = "Test")
-        self.bottom_label.grid(row = 0, column = 0)
-
-        self.create_button = tk.Button(self.bottom_frame, text = "Create", command = self.Create)
-        self.create_button.grid(row = 0, column = 1)
+        self.create_button = tk.Button(self.bottom_frame, text = "Create", command = self.Create, width = 20, height = 2)
+        self.create_button.pack(pady = 10)
 
     def _on_mouse_wheel (self, event) :
         if (event.num == 4) : self.main_canvas.yview_scroll(-1, "units")
@@ -190,14 +194,14 @@ class Prompt () :
     def Add_member (self) :
         self.member_num += 1
         
-        delete_button = tk.Button(self.member_frame, text = "-", command = lambda r = self.member_num : self.Delete_member(r))
-        delete_button.grid(row = self.member_num, column = 0)
-        
         new_name_entry = tk.Entry(self.member_frame)
-        new_name_entry.grid(row = self.member_num, column = 1)
+        new_name_entry.grid(row = self.member_num, column = 0, padx = 5, pady = 1)
         
         new_url_entry = tk.Entry(self.member_frame)
-        new_url_entry.grid(row = self.member_num, column = 2)
+        new_url_entry.grid(row = self.member_num, column = 1, padx = 5, pady = 1)
+
+        delete_button = tk.Button(self.member_frame, text = "-", command = lambda r = self.member_num : self.Delete_member(r), width = 2, height = 1)
+        delete_button.grid(row = self.member_num, column = 2, padx = 5, pady = 1)
 
 
     def Delete_member (self, row) :
@@ -215,15 +219,15 @@ class Prompt () :
 
     def Add_library (self) :
         self.library_num += 1
-        
-        delete_button = tk.Button(self.library_frame, text = "-", command = lambda r = self.library_num : self.Delete_library(r))
-        delete_button.grid(row = self.library_num, column = 0)
-        
+
         new_name_entry = tk.Entry(self.library_frame)
-        new_name_entry.grid(row = self.library_num, column = 1)
+        new_name_entry.grid(row = self.library_num, column = 0, padx = 5, pady = 1)
         
         new_license_entry = tk.Entry(self.library_frame)
-        new_license_entry.grid(row = self.library_num, column = 2)
+        new_license_entry.grid(row = self.library_num, column = 1, padx = 5, pady = 1)
+
+        delete_button = tk.Button(self.library_frame, text = "-", command = lambda r = self.library_num : self.Delete_library(r), width = 2, height = 1)
+        delete_button.grid(row = self.library_num, column = 2, padx = 5, pady = 1)
 
 
     def Delete_library (self, row) :
@@ -242,15 +246,15 @@ class Prompt () :
     def Add_instruction (self) :
         self.instruction_num += 1
         
-        delete_button = tk.Button(self.instruction_frame, text = "-", command = lambda r = self.instruction_num : self.Delete_instruction(r))
-        delete_button.grid(row = self.instruction_num, column = 0)
-        
         new_name_entry = tk.Entry(self.instruction_frame)
-        new_name_entry.grid(row = self.instruction_num, column = 1)
+        new_name_entry.grid(row = self.instruction_num, column = 0, padx = 5, pady = 1)
         
         new_explanation_entry = tk.Entry(self.instruction_frame)
-        new_explanation_entry.grid(row = self.instruction_num, column = 2)
+        new_explanation_entry.grid(row = self.instruction_num, column = 1, padx = 5, pady = 1)
 
+        delete_button = tk.Button(self.instruction_frame, text = "-", command = lambda r = self.instruction_num : self.Delete_instruction(r), width = 2, height = 1)
+        delete_button.grid(row = self.instruction_num, column = 2, padx = 5, pady = 1)
+        
 
     def Delete_instruction (self, row) :
         self.instruction_num -= 1
