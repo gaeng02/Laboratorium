@@ -4,6 +4,7 @@ from tkinter import messagebox
 from datetime import datetime
 
 import date_selector
+import create_markdown
 
 class Prompt () :
 
@@ -272,10 +273,13 @@ class Prompt () :
         text = []
         text.append(self.project_name_entry.get())
         text.append(self.project_purpose_text.get("1.0", "end"))
-        
+
+        '''
         if self.start_date_var.get() :
             text.append(self.start_date_button.cget("text"))
         else : text.append(False)
+        '''
+        text.append(self.start_date_button.cget("text") if self.start_date_var.get() else False)
 
         if self.last_update_var.get() : text.append(self.last_update_button.cget("text"))
         else : text.append(False)
