@@ -274,23 +274,15 @@ class Prompt () :
         text.append(self.project_name_entry.get())
         text.append(self.project_purpose_text.get("1.0", "end"))
 
-        '''
-        if self.start_date_var.get() :
-            text.append(self.start_date_button.cget("text"))
-        else : text.append(False)
-        '''
         text.append(self.start_date_button.cget("text") if self.start_date_var.get() else False)
-
-        if self.last_update_var.get() : text.append(self.last_update_button.cget("text"))
-        else : text.append(False)
-
-        if self.contents_var.get() : text.append(True)
-        else : text.append(False)
+        text.append(self.last_update_button.cget("text") if self.last_update_var.get() else False)
+        text.append(True if self.contents_var.get() else False)
         
-        #if self.environment_var.get() : 
+        self.environment_var.get() 
         self.member_var.get()
         self.library_var.get()
         self.instruction_var.get()
+        
         print(text)
 
 
