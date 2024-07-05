@@ -277,13 +277,16 @@ class Prompt () :
         text.append(self.start_date_button.cget("text") if self.start_date_var.get() else False)
         text.append(self.last_update_button.cget("text") if self.last_update_var.get() else False)
         text.append(True if self.contents_var.get() else False)
-        
+
+        '''
         self.environment_var.get() 
         self.member_var.get()
         self.library_var.get()
         self.instruction_var.get()
-        
+        '''
         print(text)
+        create_markdown.Readme(text)
+        print("Success")
 
 
 if (__name__ == "__main__") :
