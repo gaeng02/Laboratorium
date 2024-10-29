@@ -144,7 +144,7 @@ def update_date () :
     root.mainloop()
     return app.get_date()
 
-''' 
+
 if (__name__ == "__main__") :
     update_date()
-'''
+
